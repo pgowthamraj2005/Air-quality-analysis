@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Air quality analysis dashboard for New York ozone data.">
+  <title>AirLens | Ozone Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#overview"><span class="brand-mark">◌</span> AirLens</a>
+    <nav aria-label="Main navigation">
+      <a href="#insights">Insights</a><a href="#models">Models</a><a href="#explore">Explore</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div>
+        <p class="eyebrow">NEW YORK · MAY–SEPTEMBER 1973</p>
+        <h1>Making ozone patterns<br><em>clearer.</em></h1>
+        <p class="lede">An interactive view of daily weather and ground-level ozone, with regression and classification models built in R.</p>
+        <a class="button" href="#insights">Explore results <span>↓</span></a>
+      </div>
+      <div class="hero-orb" aria-hidden="true"><span>O₃</span><small>air quality<br>analysis</small></div>
+    </section>
+
+    <section class="stats" aria-label="Dataset summary">
+      <div><strong>153</strong><span>daily records</span></div>
+      <div><strong>116</strong><span>model-ready days</span></div>
+      <div><strong>42.1</strong><span>avg. ozone (ppb)</span></div>
+      <div><strong>5</strong><span>weather months</span></div>
+    </section>
+
+    <section id="insights" class="section">
+      <p class="eyebrow">AT A GLANCE</p>
+      <div class="section-heading"><h2>What drives ozone?</h2><p>Warmer, less windy days showed the strongest association with increased ozone.</p></div>
+      <div class="insight-grid">
+        <article class="chart-card wide">
+          <div class="card-title"><div><p>MONTHLY AVERAGE</p><h3>Ozone rises in mid-summer</h3></div><span class="pill">ppb</span></div>
+          <div class="bar-chart" aria-label="Monthly ozone averages: May 23.6, June 29.4, July 59.1, August 60.0, September 31.4 ppb">
+            <div><i style="height:39%"></i><b>23.6</b><span>May</span></div>
+            <div><i style="height:49%"></i><b>29.4</b><span>Jun</span></div>
+            <div><i style="height:98%"></i><b>59.1</b><span>Jul</span></div>
+            <div><i style="height:100%"></i><b>60.0</b><span>Aug</span></div>
+            <div><i style="height:52%"></i><b>31.4</b><span>Sep</span></div>
+          </div>
+        </article>
+        <article class="insight-card teal"><span class="icon">↗</span><p>STRONGEST POSITIVE SIGNAL</p><strong>0.699</strong><h3>Temperature correlation</h3><small>Ozone tends to increase as temperature rises.</small></article>
+        <article class="insight-card ink"><span class="icon">↘</span><p>STRONGEST NEGATIVE SIGNAL</p><strong>−0.612</strong><h3>Wind correlation</h3><small>Windier days tend to have lower ozone.</small></article>
+      </div>
+    </section>
+
+    <section id="models" class="section models-section">
+      <p class="eyebrow">MODEL PERFORMANCE</p>
+      <div class="section-heading"><h2>Four ways to predict ozone.</h2><p>Test-set performance measured on 21 held-out days. Lower RMSE is better.</p></div>
+      <div class="model-list">
+        <div class="model-row"><span>01</span><b>Linear regression</b><div class="track"><i style="width:86%"></i></div><strong>17.07 <small>RMSE</small></strong></div>
+        <div class="model-row"><span>02</span><b>Log-linear regression</b><div class="track"><i style="width:76%"></i></div><strong>15.09 <small>RMSE</small></strong></div>
+        <div class="model-row"><span>03</span><b>Polynomial + interaction</b><div class="track"><i style="width:78%"></i></div><strong>15.55 <small>RMSE</small></strong></div>
+        <div class="model-row winner"><span>04</span><b>Random forest</b><div class="track"><i style="width:75%"></i></div><strong>15.07 <small>RMSE</small></strong><em>Best</em></div>
+      </div>
+      <div class="model-footnote"><span>High-ozone classifier</span><strong>90.5% accuracy</strong><strong>AUC 0.978</strong></div>
+    </section>
+
+    <section id="explore" class="section explorer">
+      <p class="eyebrow">PREDICTION SCENARIOS</p>
+      <div class="section-heading"><h2>What does the model see?</h2><p>Three weather scenarios demonstrate how changing conditions affect expected ozone levels.</p></div>
+      <div class="scenario-grid">
+        <article class="scenario hot"><p>SCENARIO 01</p><h3>Hot & calm</h3><dl><div><dt>Temperature</dt><dd>92°F</dd></div><div><dt>Wind</dt><dd>5 mph</dd></div><div><dt>Solar radiation</dt><dd>250 Ly</dd></div></dl><div class="prediction"><span>Predicted ozone</span><strong>93.7 <small>ppb</small></strong><b>Very unhealthy</b></div></article>
+        <article class="scenario moderate"><p>SCENARIO 02</p><h3>Warm & breezy</h3><dl><div><dt>Temperature</dt><dd>80°F</dd></div><div><dt>Wind</dt><dd>9 mph</dd></div><div><dt>Solar radiation</dt><dd>150 Ly</dd></div></dl><div class="prediction"><span>Predicted ozone</span><strong>37.1 <small>ppb</small></strong><b>Moderate</b></div></article>
+        <article class="scenario fresh"><p>SCENARIO 03</p><h3>Cool & windy</h3><dl><div><dt>Temperature</dt><dd>65°F</dd></div><div><dt>Wind</dt><dd>14 mph</dd></div><div><dt>Solar radiation</dt><dd>80 Ly</dd></div></dl><div class="prediction"><span>Predicted ozone</span><strong>17.3 <small>ppb</small></strong><b>Good</b></div></article>
+      </div>
+    </section>
+
+    <section class="section gallery">
+      <p class="eyebrow">ANALYSIS FIGURES</p>
+      <div class="section-heading"><h2>See the full evidence.</h2><a class="text-link" href="plots/12_analysis_dashboard.png" target="_blank">Open dashboard ↗</a></div>
+      <div class="gallery-grid">
+        <a href="plots/12_analysis_dashboard.png" target="_blank"><img src="plots/12_analysis_dashboard.png" alt="Combined analysis dashboard"><span>Results dashboard</span></a>
+        <a href="plots/04_ozone_vs_temp.png" target="_blank"><img src="plots/04_ozone_vs_temp.png" alt="Ozone versus temperature chart"><span>Ozone vs temperature</span></a>
+        <a href="plots/11_roc.png" target="_blank"><img src="plots/11_roc.png" alt="ROC curve"><span>Classifier ROC curve</span></a>
+      </div>
+    </section>
+  </main>
+  <footer><span>AirLens · Air Quality Analysis using R</span><span>Dataset: New York, 1973</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
